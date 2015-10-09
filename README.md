@@ -52,6 +52,7 @@ Complete the provided application skeleton to get the following things done:
 
 ## Challenge
 As a challenge, add the following functionality:
+
 1. When viewing an entry, an EDIT button is made available.
 2. When clicking on EDIT, the view will toggle between "view" and "edit mode"
 3. In "edit mode", the first name, last name and birthday will be changed to `<input>` elements. Editing them and pressing ENTER will change them thru the API
