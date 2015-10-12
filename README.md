@@ -83,8 +83,9 @@ Let's look at how to automate this with Grunt:
 3. Add the task to an already existing task list such as `build`
 4. Configure the task in `grunt.initConfig`
 5. Run and test the task: `grunt webpack`
-6. Eventually, add a watcher to recompile your JS every time you make a change. **NOTE** if you output `app-bundle.js` in the same directory as your watched files, the watch task will run in a loop! Make sure to
-ignore `app-bundle.js` with something like `files: ['js/**/*.js', '!js/app-bundle.js']`
+6. Eventually, add a watcher to recompile your JS every time you make a change. **NOTE** if you output your
+`app-bundle.js` in the same directory as your watched files, the watch task will run in a loop! Make sure to
+ignore it with something like `files: ['js/**/*.js', '!js/app-bundle.js']`
 7. Finally make sure to add `app-bundle.js` to your `.gitignore` file. You don't need to commit it!
 
 ## Templating: generating dynamic HTML without programatically creating elements
