@@ -15,6 +15,19 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app-bundle.js"></script>
+    
+    <script type="text/template" id="entry-template">
+      <table>
+        <tr><th>First Name</th><td><%=firstName %></td></tr>
+        <tr><th>Last Name</th><td><%=lastName %></td></tr>
+        <% if (typeof birthday !== "undefined") { %>
+          <tr><th>Birthday</th><td><%=birthday %></td></tr>
+        <% } %>
+        <% for (var i = 0; i < emails.length; i++) { %>
+          <tr><th>Email # <%=i+1 %></th><td><%= emails[i].email %> (<%= emails[i].type %>)</td></tr>
+        <% } %>
+      </table>
+    </script>
   </body>
 </html>

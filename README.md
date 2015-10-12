@@ -58,3 +58,46 @@ As a challenge, add the following functionality:
 3. In "edit mode", the first name, last name and birthday will be changed to `<input>` elements. Editing them and pressing ENTER will change them thru the API
 4. In "edit mode", each email, address and phone number will have a DELETE button next to it. Clicking this button should delete the entry in the API and update the UI
 5. In "edit mode", each of email, address and phone sections will have an ADD button. Clicking this button should open a popup with a form to add a new sub-entry of that type
+6. 
+
+# Additions
+In this section, let's look at some ways we can make our lives easier. Moving on from using
+** only** jQuery, we will look at code splitting, HTML templating, front-end routing as well
+as nicer ways to communicate with APIs.
+
+## Splitting code and bundling it up for the web
+For bundling up front-end JavaScript, we will use [webpack](https://webpack.github.io/)
+
+Install webpack with; `npm install -g webpack`
+
+Compile you JavaScript bundle with: `webpack --entry ./js/app.js --outp-filename ./js/app-bundle.js`
+
+If you need to develop and will compile often, you can have webpack watch: just add `--watch` to the command line
+
+**NOTE**: You will also need to edit `index.html` to change the `<script>` tag from `app.js` to `app-bundle.js`
+
+Let's look at how to automate this with Grunt:
+1. We need to install [`grunt-webpack`](https://github.com/webpack/grunt-webpack) with `npm install --save-dev grunt-webpack`
+2. Load the grunt-webpack task in `Gruntfile.js`
+3. Add the task to an already existing task list such as `build`
+4. Configure the task in `grunt.initConfig`
+5. Run and test the task: `grunt webpack`
+6. Eventually, add a watcher to recompile your JS every time you make a change. **NOTE** if you output `app-bundle.js`
+7. in the same directory as your watched files, the watch task will run in a loop! Make sure to
+8. ignore `app-bundle.js` with something like `files: ['js/**/*.js', '!js/app-bundle.js']`
+
+## Templating: generating dynamic HTML without programatically creating elements
+We will use the [`template`](http://underscorejs.org/#template) function from UnderscoreJS:
+
+1. `npm install --save underscore`
+2. By using Webpack, we will be able to do `var _ = require('underscore');` :)
+3. The `_.template` function takes a template string and returns a template function
+4. The template string can be any text, as well as interpolation tags `<%= var1 %>` and `<% if (typeof var1 === "undefined") {%>`
+5. The returned template function takes an object as parameter, and returns the template string
+interpolated with the properties from the passed object.
+6. As a last step, we can put our template in our HTML code inside a `<script type="text/template">` tag.
+These tags are neither displayed nor evaluated by the browser, but their content can be fetched
+by giving them an ID and calling `$('#template-id').html()` to retrieve the template string
+7. Checkout [embeddedjs.com](http://www.embeddedjs.com/) for additional instructions and tutorials
+
+## BackboneJS: library for creating front-end, single-page application
