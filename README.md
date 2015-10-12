@@ -77,14 +77,15 @@ If you need to develop and will compile often, you can have webpack watch: just 
 **NOTE**: You will also need to edit `index.html` to change the `<script>` tag from `app.js` to `app-bundle.js`
 
 Let's look at how to automate this with Grunt:
+
 1. We need to install [`grunt-webpack`](https://github.com/webpack/grunt-webpack) with `npm install --save-dev grunt-webpack`
 2. Load the grunt-webpack task in `Gruntfile.js`
 3. Add the task to an already existing task list such as `build`
 4. Configure the task in `grunt.initConfig`
 5. Run and test the task: `grunt webpack`
-6. Eventually, add a watcher to recompile your JS every time you make a change. **NOTE** if you output `app-bundle.js`
-7. in the same directory as your watched files, the watch task will run in a loop! Make sure to
-8. ignore `app-bundle.js` with something like `files: ['js/**/*.js', '!js/app-bundle.js']`
+6. Eventually, add a watcher to recompile your JS every time you make a change. **NOTE** if you output `app-bundle.js` in the same directory as your watched files, the watch task will run in a loop! Make sure to
+ignore `app-bundle.js` with something like `files: ['js/**/*.js', '!js/app-bundle.js']`
+7. Finally make sure to add `app-bundle.js` to your `.gitignore` file. You don't need to commit it!
 
 ## Templating: generating dynamic HTML without programatically creating elements
 We will use the [`template`](http://underscorejs.org/#template) function from UnderscoreJS:
