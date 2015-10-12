@@ -81,7 +81,7 @@ Let's look at how to automate this with Grunt:
 1. We need to install [`grunt-webpack`](https://github.com/webpack/grunt-webpack) with `npm install --save-dev grunt-webpack`
 2. Load the grunt-webpack task in [`Gruntfile.js`](https://github.com/DecodeMTL/jquery-addressbook/blob/master/Gruntfile.js#L51)
 3. Add the task to an already existing task list such as `build`, like here: [`Gruntfile.js`](https://github.com/DecodeMTL/jquery-addressbook/blob/master/Gruntfile.js#L53) 
-4. Configure the task in [`grunt.initConfig`](https://github.com/DecodeMTL/jquery-addressbook/blob/master/Gruntfile.js#L20)
+4. Configure the task in [`grunt.initConfig`](https://github.com/DecodeMTL/jquery-addressbook/blob/master/Gruntfile.js#L20-28)
 5. Run and test the task: `grunt webpack`
 6. Eventually, add a watcher to recompile your JS every time you make a change. **NOTE** if you output your
 `app-bundle.js` in the same directory as your watched files, the watch task will run in a loop! Make sure to
