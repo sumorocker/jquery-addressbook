@@ -124,3 +124,46 @@ The `display.js` file contains examples of how to use Models and Collections.
 // TODO
 
 ### Routing
+Just like on the backend side with ExpressJS, we can associate a URL or URL pattern with
+a function on the front-end side.
+
+At the most basic, this is done by subscribing to the `hashchange` event on the `window`
+global object:
+
+```javascript
+window.onhashchange = function() {
+  var hash = window.location.hash;
+  
+  if (hash === '#/view1') {
+    // call some code to display view 1
+  }
+  else if (/* ... */) {
+    // ...
+  }
+}
+```
+
+It turns out that Backbone also has a Router class that can make this much easier,
+especially when it comes to URL patterns. To use it, we first extend the Backbone router:
+
+```javascript
+var MyAppRouter = Backbone.Router.extend({
+  routes: {
+    'addressbooks(/page:pageNum)': 'showAddressBooks',
+    'addressbooks/:id(/page:pageNum)': 'showAddressBookEntries',
+    //...
+  },
+  showAddressBooks: function(pageNum) {
+    // run some code that will list addressbooks, optionally with a page number
+  },
+  // ...
+});
+```
+
+Then, we have to instantiate a copy of this router, and start the Backbone history tracking:
+```javascript
+var router = new MyAppRouter();
+Backbone.history.start();
+```
+
+The rest will take care of itself :)
