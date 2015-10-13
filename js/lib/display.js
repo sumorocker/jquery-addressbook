@@ -7,7 +7,7 @@ var LISTING_LIMIT = 5;
 
 // Functions that display things on the screen (views)
 function displayAddressBooksList(pageNum) {
-    pageNum = pageNum || 0;
+    pageNum = +pageNum || 0;
     dataFunctions.getAddressBooks(LISTING_LIMIT, pageNum).then(
         function(result) {
             
@@ -17,34 +17,18 @@ function displayAddressBooksList(pageNum) {
             $app.append($ul);
             
             result.addressBooks.forEach(function(ab) {
-                $ul.append('<li data-id="' + ab.id + '">' + ab.name + '</li>');
+                $ul.append('<li><a href="#/addressbooks/' + ab.id + '">' + ab.name + '</a></li>');
             });
             
-            $ul.on('click', 'li', function() {
-                var addressBookId = $(this).data('id');
-                displayAddressBook(addressBookId);
-            });
-            
-            $('<button>&lt; prev</button>')
-                .prop('disabled', pageNum === 0)
-                .appendTo($app)
-                .on('click', function() {
-                    displayAddressBooksList(pageNum - 1);
-                });
-            
-            $('<button>next &gt;</button>')
-                .prop('disabled', !result.hasNext)
-                .appendTo($app)
-                .on('click', function() {
-                    displayAddressBooksList(pageNum + 1);
-                });
+            $app.append('<a class="button" href="#/addressbooks/page' + (pageNum - 1) + '">&lt; prev</a>');
+            $app.append('<a class="button" href="#/addressbooks/page' + (pageNum + 1) + '">next &gt;</a>');
             
         }
     );
 }
 
 function displayAddressBook(addressBookId, pageNum) {
-    pageNum = pageNum || 0;
+    pageNum = +pageNum || 0;
     dataFunctions.getAddressBookEntries(addressBookId, LISTING_LIMIT, pageNum).then(
         function(result) {
             $app.html(''); // Clear the #app div
@@ -58,28 +42,11 @@ function displayAddressBook(addressBookId, pageNum) {
             $app.append($ul);
             
             result.entries.forEach(function(entry) {
-                $ul.append('<li data-id="' + entry.id + '">' + entry.lastName + ', ' + entry.firstName + '</li>');
+                $ul.append('<li><a href="#/entry/' + entry.id +'">' + entry.lastName + ', ' + entry.firstName + '</a></li>');
             });
             
-            $ul.on('click', 'li', function() {
-                var entryId = $(this).data('id');
-                displayEntry(entryId);
-            });
-            
-            $('<button>&lt; prev</button>')
-                .prop('disabled', pageNum === 0)
-                .appendTo($app)
-                .on('click', function() {
-                    displayAddressBook(addressBookId, pageNum - 1);
-                });
-            
-            $('<button>next &gt;</button>')
-                .prop('disabled', !result.hasNext)
-                .appendTo($app)
-                .on('click', function() {
-                    displayAddressBook(addressBookId, pageNum + 1);
-                });
-            
+            $app.append('<a class="button" href="#/addressbooks/' +addressBookId + '/' + (pageNum - 1) + '">&lt; prev</a>');
+            $app.append('<a class="button" href="#/addressbooks/' + addressBookId + '/' + (pageNum + 1) + '">next &gt;</a>');
         }
     )
 }
@@ -94,7 +61,7 @@ function displayEntry(entryId) {
                 .on('click', displayAddressBook.bind(null, entry.addressBookId, null));
             
             var entryTemplate = _.template( $('#entry-template').html() );
-            var entryTable = entryTemplate(entry);
+            var entryTable = entryTemplate({entry: entry});
             $app.append(entryTable);
         }
     );
@@ -146,5 +113,7 @@ function _buildPhones(phones) {
 // End utility functions
 
 module.exports = {
-    displayAddressBooksList: displayAddressBooksList
+    displayAddressBooksList: displayAddressBooksList,
+    displayAddressBook: displayAddressBook,
+    displayEntry: displayEntry
 };

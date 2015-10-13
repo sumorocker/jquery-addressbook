@@ -101,3 +101,24 @@ by giving them an ID and calling `$('#template-id').html()` to retrieve the temp
 7. Checkout [embeddedjs.com](http://www.embeddedjs.com/) for additional instructions and tutorials
 
 ## BackboneJS: library for creating front-end, single-page application
+In class, we have talked about the MVC architectural pattern. It turns out that there are
+lots of JavaScript frameworks that implement this architecture, in part or in full.
+
+BackboneJS is one of these frameworks. It gives us access to a Model class, a Collection
+class, which is basically a list of Model objects, as well as a View class and a Router
+class.
+
+### Models and Collections
+By using Backbone's Models and Collections, we get quite a few advantages: our business
+logic concerns are separated from the rest of our application, making debugging and
+maintenance easier. In addition to that, by simply providing the root URL of a standard
+REST API, Backbone will do all the heavy lifting for us in terms of fetching objects and
+lists of objects, as well as saving objects to the API. This is referred to as CRUD, or
+Create/Read/Update/Delete.
+
+The `display.js` file contains examples of how to use Models and Collections.
+
+### Views
+// TODO
+
+### Routing

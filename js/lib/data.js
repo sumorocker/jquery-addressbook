@@ -1,6 +1,28 @@
 // Set the API base url
 var API_URL = "https://loopback-rest-api-demo-ziad-saab.c9.io/api";
 
+var Backbone = require('backbone');
+
+var EntryModel = Backbone.Model.extend({
+    urlRoot: API_URL + '/Entries',
+    getFullName: function() {
+        return this.get('firstName') + ' ' + this.get('lastName');
+    },
+    validate: function() {
+        
+    }
+});
+EntryModel.includeFilter = JSON.stringify({
+    include: ['addresses','emails','phones']
+});
+
+var EntryCollection = Backbone.Collection.extend({
+    model: EntryModel,
+    url: function() {
+        return API_URL + '/AddressBooks/' + this.addressBookId + '/entries';
+    }
+});
+
 // Data retrieval functions
 
 /*
@@ -26,6 +48,11 @@ function getAddressBooks(numPerPage, pageNum) {
 }
 
 function getAddressBookEntries(addressBookId, numPerPage, pageNum) {
+    
+    // var entries = new EntryCollection();
+    // entries.addressBookId = addressBookId;
+    // return entries.fetch();
+    
     return $.getJSON(API_URL + '/AddressBooks/' + addressBookId + '/entries', {
         filter: JSON.stringify({
             limit: numPerPage + 1,
@@ -34,6 +61,8 @@ function getAddressBookEntries(addressBookId, numPerPage, pageNum) {
         })
     }).then(
         function(res) {
+            res.forEach(function(entry) {
+            });
             return {
                 entries: res.slice(0, numPerPage),
                 hasNext: res.length > numPerPage
@@ -43,11 +72,34 @@ function getAddressBookEntries(addressBookId, numPerPage, pageNum) {
 }
 
 function getEntry(entryId) {
-    return $.getJSON(API_URL + '/Entries/' + entryId, {
-        filter: JSON.stringify({
-            include: ['addresses','emails','phones']
-        })
-    });
+    var entry = new EntryModel({id: entryId});
+    return entry.fetch({data: {filter: EntryModel.includeFilter}}).then(
+        function() {
+            return entry;
+        }
+    );
+    // return $.getJSON(API_URL + '/Entries/' + entryId, {
+    //     filter: JSON.stringify({
+    //         include: ['addresses','emails','phones']
+    //     })
+    // }).then(
+    //     function(entry) {
+    //         entry.getFullName = function() {
+    //             return this.firstName + ' ' + this.lastName;
+    //         }
+    //         entry.validate = function() {
+    //             if (this.firstName.length === 0) {
+    //                 return false;
+    //             }
+    //             if (this.lastName.legnth === 0) {
+    //                 return false;
+    //             }
+    //             return true;
+    //         }
+            
+    //         return entry;
+    //     }
+    // );
 }
 // End data retrieval functions
 

@@ -19,13 +19,14 @@
     
     <script type="text/template" id="entry-template">
       <table>
-        <tr><th>First Name</th><td><%=firstName %></td></tr>
-        <tr><th>Last Name</th><td><%=lastName %></td></tr>
-        <% if (typeof birthday !== "undefined") { %>
-          <tr><th>Birthday</th><td><%=birthday %></td></tr>
+        <tr><th>First Name</th><td><%=entry.get('firstName') %></td></tr>
+        <tr><th>Last Name</th><td><%=entry.get('lastName') %></td></tr>
+        <tr><th>Full Name</th><td><%=entry.getFullName()%></td></tr>
+        <% if (typeof entry.get('birthday') !== "undefined") { %>
+          <tr><th>Birthday</th><td><%=entry.get('birthday') %></td></tr>
         <% } %>
-        <% for (var i = 0; i < emails.length; i++) { %>
-          <tr><th>Email # <%=i+1 %></th><td><%= emails[i].email %> (<%= emails[i].type %>)</td></tr>
+        <% for (var i = 0; i < entry.get('emails').length; i++) { %>
+          <tr><th>Email # <%=i+1 %></th><td><%= entry.get('emails')[i].email %> (<%= entry.get('emails')[i].type %>)</td></tr>
         <% } %>
       </table>
     </script>
