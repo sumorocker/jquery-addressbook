@@ -70,7 +70,7 @@ For bundling up front-end JavaScript, we will use [webpack](https://webpack.gith
 
 Install webpack with; `npm install -g webpack`
 
-Compile you JavaScript bundle with: `webpack --entry ./js/app.js --outp-filename ./js/app-bundle.js`
+Compile you JavaScript bundle with: `webpack --entry ./js/app.js --output-filename ./js/app-bundle.js`
 
 If you need to develop and will compile often, you can have webpack watch: just add `--watch` to the command line
 
