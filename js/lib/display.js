@@ -5,6 +5,8 @@ var _ = require('underscore');
 // Some constants...
 var LISTING_LIMIT = 5;
 
+var EntryView = require('./views/entry-view');
+
 // Functions that display things on the screen (views)
 function displayAddressBooksList(pageNum) {
     pageNum = +pageNum || 0;
@@ -60,9 +62,24 @@ function displayEntry(entryId) {
                 .appendTo($app)
                 .on('click', displayAddressBook.bind(null, entry.addressBookId, null));
             
-            var entryTemplate = _.template( $('#entry-template').html() );
-            var entryTable = entryTemplate({entry: entry});
-            $app.append(entryTable);
+            
+            var myEntryView = new EntryView({
+                model: entry
+            });
+            myEntryView.render();
+            $app.append(myEntryView.$el);
+            
+        //     $('.editable').on('click', function() {
+        //         var $this = $(this);
+        //         var currentText = $this.text();
+        //         $this.replaceWith('<input class="edit-input" type="text" value="' + currentText + '">');
+        //         $('.edit-input').on('keypress', function(e) {
+        //             var keyCode = e.keyCode;
+        //             if (keyCode === 13) {
+        //                 alert($(this).val()); // $.ajax(PUT to the server)
+        //             }
+        //         });
+        //     });
         }
     );
 }

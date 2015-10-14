@@ -103,7 +103,7 @@ by giving them an ID and calling `$('#template-id').html()` to retrieve the temp
 7. Checkout [embeddedjs.com](http://www.embeddedjs.com/) for additional instructions and tutorials
 
 ## BackboneJS: library for creating front-end, single-page application
-In class, we have talked about the MVC architectural pattern. It turns out that there are
+In class, we talked about the MVC architectural pattern. It turns out that there are
 lots of JavaScript frameworks that implement this architecture, in part or in full.
 
 BackboneJS is one of these frameworks. It gives us access to a Model class, a Collection
@@ -121,7 +121,18 @@ Create/Read/Update/Delete.
 The `display.js` file contains examples of how to use Models and Collections.
 
 ### Views
-// TODO
+Views are another piece of the MVC puzzle. Views are a container for anything touching
+display and interaction logic. In views, we can consolidate any logic related to
+creating the HTML for one piece of our app, as well as setting up the events associated
+to that piece. Backbone will take care of all the rest for us: it will wire up the events
+through a process called [event delegation](https://learn.jquery.com/events/event-delegation/),
+create a brand new element for our view defined by `tagName` and represented as `$el`, or
+use an existing element that we provide as `el`.
+
+Our views can load templates from `.ejs` files instead of messy `<script type="text/template">` tags.
+To do this, we can put the template text into a separate file, either colocated with the
+view module or in a separate templates directory. Then, by using [Webpack's `raw-loader`](https://github.com/webpack/raw-loader),
+we can load the template into a string and pass it to `_.template`.
 
 ### Routing
 Just like on the backend side with ExpressJS, we can associate a URL or URL pattern with

@@ -16,19 +16,5 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app-bundle.js"></script>
-    
-    <script type="text/template" id="entry-template">
-      <table>
-        <tr><th>First Name</th><td><%=entry.get('firstName') %></td></tr>
-        <tr><th>Last Name</th><td><%=entry.get('lastName') %></td></tr>
-        <tr><th>Full Name</th><td><%=entry.getFullName()%></td></tr>
-        <% if (typeof entry.get('birthday') !== "undefined") { %>
-          <tr><th>Birthday</th><td><%=entry.get('birthday') %></td></tr>
-        <% } %>
-        <% for (var i = 0; i < entry.get('emails').length; i++) { %>
-          <tr><th>Email # <%=i+1 %></th><td><%= entry.get('emails')[i].email %> (<%= entry.get('emails')[i].type %>)</td></tr>
-        <% } %>
-      </table>
-    </script>
   </body>
 </html>
