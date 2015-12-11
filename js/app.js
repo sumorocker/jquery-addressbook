@@ -1,6 +1,3 @@
-// Add foundation dynamic functionality on page
-$(document).foundation();
-
 // Set the API base url
 var API_URL = "https://loopback-rest-api-demo-ziad-saab.c9.io/api";
 

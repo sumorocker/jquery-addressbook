@@ -1,14 +1,28 @@
 {
-  "name": "foundation-libsass-template",
-  "version": "0.0.1",
+  "name": "decodemtl-jquery-addressbook",
+  "version": "1.0.0",
+  "description": "jQuery Address Book front-end",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sass --watch scss/app.scss:css/app.css",
+    "build": "sass --style compressed scss/app.scss css/app.css"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zurb/foundation-libsass-template.git"
+    "url": "git+https://github.com/DecodeMTL/jquery-addressbook.git"
   },
-  "devDependencies": {
-    "node-sass": "~2.0.1",
-    "grunt": "~0.4.5",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-sass": "~0.18.0"
-  }
+  "keywords": [
+    "jquery",
+    "backbone",
+    "underscore",
+    "templates",
+    "spa"
+  ],
+  "author": "Ziad Saab <ziad.saab@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DecodeMTL/jquery-addressbook/issues"
+  },
+  "homepage": "https://github.com/DecodeMTL/jquery-addressbook#readme"
 }

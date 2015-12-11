@@ -6,8 +6,12 @@ This is the skeleton for an address book front-end application based on [the add
 The API itself is hosted at https://loopback-rest-api-demo-ziad-saab.c9.io/api and is [CORS-enabled](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
 loosely meaning "you can access it thru AJAX from any domain".
 
-This project was created by simply running `foundation new address_book --libsass`, and a bit of code was
-added on top of what Foundation generated.
+The application code was initialized with a `package.json` file. Eventually we will be adding our browser dependencies
+thru NPM. Meanwhile, take a look at the `scripts` section of `package.json`. In it we can define command lines that we
+will be running often. The app is initialized with two such commands: `dev` and `build`. As you sit down to start your
+coding day, you can launch `npm run dev` from your command line and it will start the sass watcher. If you want to compile
+your SASS in compressed form, you can use `npm run build` which will run sass with the `--style compressed` option. This
+is much easier than remembering the full commands, and the scripts can be arbitrarily complex.
 
 In `index.html`, we removed all the content of the body and replaced it with a single `div` with ID `app`.
 This is a common pattern when creating a [Single-Page Application](https://en.wikipedia.org/wiki/Single-page_application).
@@ -17,7 +21,7 @@ AJAX requests to talk to an API, and display the results live.
 In `js/app.js`, we created a basic skeleton for the application. This JavaScript file is divided into
 multiple sections:
 
-  1. Initialization section, where we load Foundation's JavaScript components and set some constants
+  1. Initialization section, where we set some "constants" -- a convention for a variable that should be constant is writing it in uppercase.
   2. A data-retrieval section. This presents a set of functions that talk to our API. The functions are
 using `jQuery.getJSON` to talk to the API and retrieve some content. 
 
@@ -53,8 +57,8 @@ Complete the provided application skeleton to get the following things done:
 ## Challenge
 As a challenge, add the following functionality:
 
-1. When viewing an entry, an EDIT button is made available.
-2. When clicking on EDIT, the view will toggle between "view" and "edit mode"
+1. When viewing an entry, an EDIT button is made available for each field
+2. When clicking on EDIT, the view will toggle between "view" and "edit mode" for that field. Pressing ENTER will save, and Esc will cancel.
 3. In "edit mode", the first name, last name and birthday will be changed to `<input>` elements. Editing them and pressing ENTER will change them thru the API
-4. In "edit mode", each email, address and phone number will have a DELETE button next to it. Clicking this button should delete the entry in the API and update the UI
-5. In "edit mode", each of email, address and phone sections will have an ADD button. Clicking this button should open a popup with a form to add a new sub-entry of that type
+4. Each email, address and phone number will have a DELETE button next to it. Clicking this button should delete the entry in the API and update the UI
+5. Each of email, address and phone sections will have an ADD button. Clicking this button should open a popup with a form to add a new sub-entry of that type
