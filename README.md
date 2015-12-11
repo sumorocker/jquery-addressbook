@@ -54,6 +54,26 @@ Complete the provided application skeleton to get the following things done:
 8. The entries should be clickable. Upon clicking on an entry, the interface should switch to show the full entry using an HTML vertical table. The spec is the same as the command line version of the address book. Basically, display all the entry data as well as related data such as addresses, phones and emails.
 9. Above the entry table should be a link to go back to the current address book
 
+Without any styling added, your end result would have three different views:
+
+Address books listing with pagination:
+
+![address books list view](screenshots/addressbooks-list.png)
+
+---
+
+Entries list with pagination:
+
+![entries list view](screenshots/entries-list.png)
+
+---
+
+Single entry view (this is a basic example, your entry view will be much more complete):
+
+![single entry view](screenshots/single-entry.png)
+
+---
+
 ## Challenge
 As a challenge, add the following functionality:
 
