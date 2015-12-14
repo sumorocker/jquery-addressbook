@@ -4,17 +4,48 @@
     }
 }
 
-.address {
-    margin-bottom: 1em;
-    font-size: 12px;
-    
-    &__type {
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 2px;
-    }
-    
-    &__text {
-        font-family: sans-serif;
-    }
+*{
+     margin: 0px;
+}   
+
+body{
+    top: 50%;
+    left: 50%;
+    transform: translate (-50%,-50%);
+    text-align:center;
+    // text-align: center;
 }
+
+li{
+    list-style-type: none;
+    // border: 2px solid black;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align:center;
+    width: 33.33333%;
+    color: white;
+    font-family: sans-serif;
+    background-color: hsl(350, 50%, 50%);
+}
+
+li:hover{
+    background-color:black;
+    color:white;
+}
+
+h1{
+    color: white;
+    font-family:sans-serif;
+    background-color: hsl(350, 50%, 50%);
+    padding: 20px;
+    margin-bottom: 20px;
+};
+
+h2{
+    color: hsl(350, 50%, 50%);
+    padding-bottom: 20px;
+    font-family: sans-serif;
+}
+
+// currentEventTarget
